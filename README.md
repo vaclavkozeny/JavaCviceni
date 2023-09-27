@@ -1,1 +1,1 @@
-# JavaCviceni
+# Cvičení Java
