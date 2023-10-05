@@ -8,7 +8,11 @@ package src.cv01;
 import java.util.Scanner;
 
 public class PrevodSekund {
-
+    /**
+     *
+     * @param args Hours Minutes Seconds [HH MM SS]
+     * @return convert input [Hours Minutes Seconds] to Seconds
+     */
     public static void main(String[] args) {
         int Hours, Minutes, Seconds, Out;
         Scanner scanner = new Scanner(System.in);
@@ -29,6 +33,6 @@ public class PrevodSekund {
         Seconds = In  - (Hours * 3600) - (Minutes * 60);
         //System.out.println(Hours + " " + Minutes + " " + Seconds);
         //System.out.printf("%d hodin %d minut %d sekund", Hours, Minutes, Seconds);
-        System.out.println(String.format("%02d:%02d:%02d", Hours, Minutes, Seconds));
+        System.out.format("%02d:%02d:%02d", Hours, Minutes, Seconds);
     }
 }
