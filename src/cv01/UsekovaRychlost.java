@@ -13,7 +13,6 @@ public class UsekovaRychlost {
         Scanner scanner = new Scanner(System.in);
         //inputs
         int MaxSpeed, Length, HoursStart, MinutesStart, SecondsStart, HoursEnd, MinutesEnd, SecondsEnd;
-
         System.out.println("zadejte pozadovane udaje: [maximalní povolena rychlost] [delka useku v KM]");
         MaxSpeed = scanner.nextInt();
         Length = scanner.nextInt();
@@ -38,5 +37,6 @@ public class UsekovaRychlost {
         Speed = Math.round(Speed);
         //System.out.println(s);
         System.out.printf("Vase rychlost byla %f, povolenou rychlost jste prekrocil o %f", Speed, (Speed-MaxSpeed));
+
     }
 }

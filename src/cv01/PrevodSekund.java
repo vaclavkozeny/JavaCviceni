@@ -21,7 +21,6 @@ public class PrevodSekund {
         System.out.println("Cas zavodnika je: " + Out + " sekund" );
         //--------------------------------------------------------------------------------
         int In;
-        String OutString;
         System.out.println("Zadej pocet sekund, ktere se prevedou na cas ve formatu [HH:MM:SS]");
         In = scanner.nextInt();
         //System.out.println(In);
@@ -30,7 +29,6 @@ public class PrevodSekund {
         Seconds = In  - (Hours * 3600) - (Minutes * 60);
         //System.out.println(Hours + " " + Minutes + " " + Seconds);
         //System.out.printf("%d hodin %d minut %d sekund", Hours, Minutes, Seconds);
-        OutString = String.format("%02d:%02d:%02d", Hours, Minutes, Seconds);
-        System.out.println(OutString);
+        System.out.println(String.format("%02d:%02d:%02d", Hours, Minutes, Seconds));
     }
 }

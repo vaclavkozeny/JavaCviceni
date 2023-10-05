@@ -25,9 +25,10 @@ public class UroceniVkladu {
         N = scanner.nextInt();
         System.out.println("Zadej kolikrat za rok se pripisuje urok");
         M = scanner.nextInt();
-        double z1 = 1+(((double)U/100)/M);
-        double z2 = Math.pow(z1, (N*M));
-        Out = K0*z2;
+        // p1,p2 pomocne promene
+        double p1 = 1+(((double)U/100)/M);
+        double p2 = Math.pow(p1, (N*M));
+        Out = K0*p2;
         Out = Math.round(Out);
         System.out.println("Na uctu budete mit: "+Out);
     }
