@@ -10,7 +10,7 @@ public class KvadrantBodu {
     public static void main(String[] args) {
         double x,y;
         int  k = 0;
-        System.out.println("Zadej souradnice (X Y)");
+        System.out.println("Zadej souradnice (X Y) ");
         try{
             x = scanner.nextDouble();
             y = scanner.nextDouble();
