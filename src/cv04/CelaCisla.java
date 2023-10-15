@@ -1,7 +1,9 @@
 package src.cv04;
 
-public class Vypocty {
+import java.util.Scanner;
+
+public class CelaCisla {
     public static void main(String[] args) {
-        Math.pow(2,2);
+
     }
 }
