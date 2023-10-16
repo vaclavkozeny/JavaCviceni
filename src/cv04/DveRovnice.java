@@ -19,12 +19,16 @@ public class DveRovnice {
         d = scanner.nextDouble();
         e = scanner.nextDouble();
         f = scanner.nextDouble();
+        if(((a == 0 && b == 0) && c != 0)||((d == 0 && e == 0) && f != 0)){
+            System.out.println("rovnice neni zadana jako rovnice");
+            System.exit(6);
+        }
         double D = a*e - b*d;
         double Dx = c*e - b*f;
         double Dy = a*f -c*d;
         if(D == 0 && Dx == 0 && Dy == 0){
             System.out.println("Rovnice ma nekonecne mnoho reseni");
-        } else if (D == 0 && (Dx == 0 || Dy == 0)) {
+        } else if (D == 0 && (Dx != 0 || Dy != 0)) {
             System.out.println("Rovnice nema reseni");
         }else{
             x = Dx/D;
