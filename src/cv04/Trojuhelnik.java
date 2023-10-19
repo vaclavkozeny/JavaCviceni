@@ -29,7 +29,7 @@ public class Trojuhelnik {
             a = arr[0];
             b = arr[1];
             c = arr[2];
-            System.out.format("Strana a je %.0f (nejmensi), strana b je %.02f, strana c je %.02f (nejvetsi) %n",a,b,c);
+            System.out.format("Strana a je %.02f (nejmensi), strana b je %.02f, strana c je %.02f (nejvetsi) %n",a,b,c);
 
             // vypocitat plochu a obvod trojuhelnika (se stranami a, b, c)
             double Obvod, Obsah,s;

@@ -27,34 +27,40 @@ public class CelaCisla {
         boolean t;
 
         do {
-            System.out.println("Zadej cislo pro vypis jeho delitelu / 0 pro dalsi krok");
+            System.out.println("Zadej cislo pro vypis jeho delitelu / nekladne pro dalsi krok");
             try{
                 a = scanner.nextInt();
             }catch (InputMismatchException e){
                 throw new InputMismatchException("Spatny vstup");
             }
-            for(int i = 2; i < a; i++){
-                if(a%i == 0){
-                    System.out.println(i);
+            if(a > 0){
+                for(int i = 2; i < a; i++){
+                    if(a%i == 0){
+                        System.out.println(i);
+                    }
                 }
             }
 
+
         }while(a > 0);
         do {
-            System.out.println("Zadej cislo pro zjisteni poctu jeho delitelu / 0 pro dalsi krok");
+            System.out.println("Zadej cislo pro zjisteni poctu jeho delitelu / nekladne pro dalsi krok");
             try{
                 a = scanner.nextInt();
             }catch (InputMismatchException e){
                 throw new InputMismatchException("Spatny vstup");
             }
-            for(int i = 2; i < a; i++){
-                if(a%i == 0){
-                    //System.out.println(i);
-                    p++;
+            if(a > 0) {
+                for (int i = 2; i < a; i++) {
+                    if (a % i == 0) {
+                        //System.out.println(i);
+                        p++;
+                    }
                 }
+                System.out.format("Pocet delitelu je: %d%n",p);
+                p = 0;
             }
-            System.out.format("Pocet delitelu je: %d%n",p);
-            p = 0;
+
 
         }while(a > 0);
         /*
@@ -63,39 +69,43 @@ public class CelaCisla {
         podmínkou v záhlaví příkazu while a nikoli příkazem break). Modifikace pro opakované zadávání čísel.
         */
         do {
-            System.out.println("Zadej cislo pro zjisteni prvocisla / 0 pro dalsi krok");
+            System.out.println("Zadej cislo pro zjisteni prvocisla / nekladne pro dalsi krok");
             try{
                 a = scanner.nextInt();
             }catch (InputMismatchException e){
                 throw new InputMismatchException("Spatny vstup");
             }
-            t = true;
-            if (a == 1)
-                t = false;
-            for (int i = 2; i < a/2; i++) {
-                if (a % i == 0)
+            if(a > 0) {
+                t = true;
+                if (a == 1)
                     t = false;
+                for (int i = 2; i < a / 2; i++) {
+                    if (a % i == 0)
+                        t = false;
+                }
+                System.out.format(t ? "cislo je prvocislo%n" : "cislo neni prvocislo%n");
             }
-            System.out.format(t ? "cislo je prvocislo%n" : "cislo neni prvocislo%n");
+
         }while(a > 0);
         /*
         23. Zapište program, který každé zadané číslo vypíše jako součin prvočísel. Program nechť skončí po zadání hodnoty
         0 nebo záporného čísla na vstupu.
          */
         do{
-            System.out.println("\nZadej cislo pro rozklad na prvocisla / 0 pro konec");
+            System.out.println("\nZadej cislo pro rozklad na prvocisla / nekladne pro konec");
             try{
                 a = scanner.nextInt();
             }catch (InputMismatchException e){
                 throw new InputMismatchException("Spatny vstup");
             }
-
-            for (int i = 2; i <= a; i++) {
-                while (a % i == 0) {
-                    System.out.print(i);
-                    a = a/i;
-                    if(a > 1){
-                        System.out.print(" * ");
+            if(a > 0) {
+                for (int i = 2; i <= a; i++) {
+                    while (a % i == 0) {
+                        System.out.print(i);
+                        a = a / i;
+                        if (a > 1) {
+                            System.out.print(" * ");
+                        }
                     }
                 }
             }
