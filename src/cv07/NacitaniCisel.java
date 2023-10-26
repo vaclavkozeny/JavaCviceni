@@ -39,11 +39,11 @@ public class NacitaniCisel {
         int s = scanner.nextInt();
         System.out.println("Zadej cisla");
         float last = scanner.nextFloat();
-        String vysledek = "je vzestupna";
+        boolean vysledek = true;
         for(int i = 0; i < s-1; i++){
             float n = scanner.nextFloat();
             if(last > n){
-                vysledek = "neni vzestupna";
+                vysledek = false;
                 break;
             }
             last = n;
