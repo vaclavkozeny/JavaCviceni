@@ -6,21 +6,21 @@ import java.util.Scanner;
 public class NacitaniCisel {
     private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-//        int soucet = 0;
-//        int prumer;
-//        int pocet = 0;
-//        int a;
-//
-//        do{
-//            a = scanner.nextInt();
-//            if(a < 0){
-//                break;
-//            }
-//            soucet = soucet + a;
-//            pocet++;
-//        }while(a != -1);
-//        prumer = soucet / pocet;
-//        System.out.format("Prumer je %d, soucet je %d",prumer,soucet);
+        int soucet = 0;
+        int prumer;
+        int pocet = 0;
+        int a;
+
+        do{
+            a = scanner.nextInt();
+            if(a < 0){
+                break;
+            }
+            soucet = soucet + a;
+            pocet++;
+        }while(a > 0);
+        prumer = soucet / pocet;
+        System.out.format("Prumer je %d, soucet je %d",prumer,soucet);
 
         //-------------------------
 //        System.out.println("Zadej pocet cislic");
@@ -35,20 +35,20 @@ public class NacitaniCisel {
 //        }
 //        System.out.format("Min %.1f, Max %.1f", min, max);
         //-------------------------
-        System.out.println("Zadej pocet cislic");
-        int s = scanner.nextInt();
-        System.out.println("Zadej cisla");
-        float last = scanner.nextFloat();
-        boolean vysledek = true;
-        for(int i = 0; i < s-1; i++){
-            float n = scanner.nextFloat();
-            if(last > n){
-                vysledek = false;
-                break;
-            }
-            last = n;
-        }
-        System.out.format("Posloupnost %s", vysledek);
+//        System.out.println("Zadej pocet cislic");
+//        int s1 = scanner.nextInt();
+//        System.out.println("Zadej cisla");
+//        float last = scanner.nextFloat();
+//        boolean vysledek = true;
+//        for(int i = 0; i < s1-1; i++){
+//            float n = scanner.nextFloat();
+//            if(last > n){
+//                vysledek = false;
+//                break;
+//            }
+//            last = n;
+//        }
+//        System.out.format("Posloupnost %s", vysledek);
 
     }
 }
