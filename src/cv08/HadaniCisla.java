@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class HadaniCisla {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Random rand = new Random();
-    private static  int dolniMez = 1;
+    private static final int dolniMez = 1;
     private static int horniMez = 100;
     private static int hadaneCislo;
     private static boolean konecProgramu = false;
@@ -116,6 +116,6 @@ public class HadaniCisla {
     private static void vypisMenuHadani(){
         System.out.println("1. Hadene cislo je mensi");
         System.out.println("2. Hadene cislo je vetsi");
-        System.out.println("3. Uhodl jsem cislo");
+        System.out.println("3. Uhodl jsi cislo");
     }
 }
