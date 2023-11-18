@@ -50,6 +50,8 @@ public class MatrixApp {
             case 4: vzajemnaVymenaMatic();break;
             case 5: vypocetSouctuMatic();break;
             case 6: vypocetSoucinuMatic();break;
+            case 7: matA = MatrixTools.maticeTransponovana(matA);break;
+            case 8: MatrixTools.prevedDoNorm(matB);break;
             case 9:
                 matA = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
                 matB = new double[][]{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
@@ -102,23 +104,4 @@ public class MatrixApp {
     private static void vypocetSoucinuMatic() {
         vypisMatice(MatrixTools.soucinMatic(matA,matB), "Soucin A * B");
     }
-
-//    public static double[][] nactiMatici(int a, int b){
-//        scanner.nextLine();
-//        System.out.println("zadej matici");
-//        double[][] mat = new double[a][b];
-//        for (int i = 0; i < mat.length; i++)
-//            for (int j = 0; j < mat[i].length; j++)
-//                mat[i][j] = scanner.nextInt();
-//        return mat;
-//
-//    }
-//    public static void vypisMatici(double[][] mat){
-//        for(int i=0;i<mat.length;i++){
-//            for(int j=0;j<mat[0].length;j++){
-//                System.out.format("%6.2f",mat[i][j]);
-//            }
-//            System.out.println();//new line
-//        }
-//    }
 }

@@ -55,16 +55,65 @@ public final class MatrixTools {
         return r;
     }
     public static double[][] maticeTransponovana(double[][] a) {
-        return null;
+        int rowsA = a.length;
+        int colsA = a[0].length;
+        double[][] r = new double[rowsA][colsA];
+        for(int i=0;i<rowsA;i++){
+            for(int j=0;j<colsA;j++){
+                r[i][j] = a[j][i];
+            }
+        }
+        return r;
+    }
+    public static double[][] jednotkovaMatice(int n){
+        double[][] r = new double[n][n];
+        for(int i=0;i<r.length;i++){
+            for(int j=0;j<r[0].length;j++){
+                if(i == j){
+                    r[i][j] = 1;
+                }else{
+                    r[i][j] = 0;
+                }
+            }
+        }
+        return r;
     }
     public static void prevedDoNorm(double[][] a) {
-
+        int rowsA = a.length;
+        int colsA = a[0].length;
+        double max = 0;
+        for(int i=0;i<rowsA;i++){
+            for(int j=0;j<colsA;j++){
+                if(a[i][j] > max){
+                    max = a[i][j];
+                }
+            }
+        }
+        for(int i=0;i<rowsA;i++){
+            for(int j=0;j<colsA;j++){
+                a[i][j] /= Math.abs(max);
+            }
+        }
     }
     public static boolean jeSymetrickaDleDiag(int[][] a) {
-        return false;
+        for(int i=0;i<a.length;i++){
+            for(int j=0;j<a[0].length;j++){
+                if(a[i][j] != a[j][i]){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     public static boolean jeSymetrickaDleDiag2(int[][] a) {
-        return false;
+        for(int i=0;i<a.length;i++){
+            for(int j=0;j<a[0].length;j++){
+                if(a[j][i] != a[i][j]){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     public static boolean jeSymetrickaDleHorizOsy(int[][] a) {
         return false;
@@ -72,15 +121,15 @@ public final class MatrixTools {
     public static boolean jeSymetrickaDleVertOsy(int[][] a) {
         return false;
     }
-    public static void vypisMatici(double[][] mat){
+    public static void vypisMaticiTest(double[][] mat){
         for(int i=0;i<mat.length;i++){
             for(int j=0;j<mat[0].length;j++){
-                System.out.format("%6.2f",mat[i][j]);
+                System.out.format("%.0f ",mat[i][j]);
             }
-            System.out.println();//new line
+            System.out.println();
         }
     }
-        public static double[][] nactiMatici(int a, int b){
+        public static double[][] nactiMaticiTest(int a, int b){
         System.out.format("zadej matici %dx%d\n",a,b);
         double[][] mat = new double[a][b];
         for (int i = 0; i < mat.length; i++)
