@@ -1,4 +1,4 @@
-package src.cv06;
+package src.cv05;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

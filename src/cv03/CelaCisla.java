@@ -1,4 +1,4 @@
-package src.cv02;
+package src.cv03;
 
 public class CelaCisla {
     public static void main(String[] args) {

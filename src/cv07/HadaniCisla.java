@@ -1,4 +1,4 @@
-package src.cv08;
+package src.cv07;
 
 import java.util.InputMismatchException;
 import java.util.Random;

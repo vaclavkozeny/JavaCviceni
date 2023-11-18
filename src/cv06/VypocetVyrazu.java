@@ -1,4 +1,4 @@
-package src.cv07;
+package src.cv06;
 
 import java.util.Scanner;
 

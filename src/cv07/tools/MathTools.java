@@ -1,4 +1,4 @@
-package src.cv08.tools;
+package src.cv07.tools;
 
 public final class MathTools {
     private MathTools(){}

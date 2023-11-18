@@ -1,4 +1,4 @@
-package src.cv09;
+package src.cv08;
 
 import java.util.Arrays;
 public class EratosthenovoSito {
