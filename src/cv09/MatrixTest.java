@@ -5,6 +5,10 @@ public class MatrixTest {
         //double[][] matA = MatrixTools.nactiMatici(3, 3);
         int[][] matB = new int[][]{{3, 2, 1}, {4, 1, 2}, {1, 4, 3}};
         //MatrixTools.vypisMatici(MatrixTools.souctetMatic(matA, matB));
+        System.out.println(MatrixTools.jeSymetrickaDleDiag(matB));
         System.out.println(MatrixTools.jeSymetrickaDleDiag2(matB));
+        System.out.println(MatrixTools.jeSymetrickaDleHorizOsy(matB));
+        System.out.println(MatrixTools.jeSymetrickaDleVertOsy(matB));
+        MatrixTools.vypisMaticiTest(MatrixTools.jednotkovaMatice(6));
     }
 }

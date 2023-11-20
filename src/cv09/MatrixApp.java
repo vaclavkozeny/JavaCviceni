@@ -50,11 +50,11 @@ public class MatrixApp {
             case 4: vzajemnaVymenaMatic();break;
             case 5: vypocetSouctuMatic();break;
             case 6: vypocetSoucinuMatic();break;
-            case 7: matA = MatrixTools.maticeTransponovana(matA);break;
+            case 7: matA = MatrixTools.maticeTransponovana(matA);vypisMatice(matA,"Transpozice");break;
             case 8: MatrixTools.prevedDoNorm(matB);break;
             case 9:
                 matA = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-                matB = new double[][]{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+                matB = new double[][]{{-9, -8, -7}, {6, 5, 4}, {3, 2, 1}};
                 break;
             default: System.out.println("Neznama volba");
         }
@@ -81,11 +81,11 @@ public class MatrixApp {
         vypisMatice(matB, "Matice B");
     }
     private static void vypisMatice(double[][] mat, String titulek) {
-        System.out.println(titulek);
         if (mat == null) {
-            System.out.println("Matice neni zadana");
+            System.out.println("Nastala chyba s matici");
             return;
         }
+        System.out.println(titulek);
         for(int i=0;i<mat.length;i++){
             for(int j=0;j<mat[0].length;j++){
                 System.out.format("%6.2f",mat[i][j]);
@@ -99,7 +99,7 @@ public class MatrixApp {
         matB = h;
     }
     private static void vypocetSouctuMatic() {
-        vypisMatice(MatrixTools.soucinMatic(matA, matB),"Soucet A + B");
+        vypisMatice(MatrixTools.souctetMatic(matA, matB),"Soucet A + B");
     }
     private static void vypocetSoucinuMatic() {
         vypisMatice(MatrixTools.soucinMatic(matA,matB), "Soucin A * B");
