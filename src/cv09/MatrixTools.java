@@ -22,7 +22,6 @@ public final class MatrixTools {
         int rowsB = b.length;
         int colsB = b[0].length;
         if(rowsA != rowsB || colsA != colsB){
-            System.out.println("Rozmery jsou spatne");
             return null;
         }
         double[][] r = new double[rowsA][colsA];
@@ -48,8 +47,7 @@ public final class MatrixTools {
         int colsA = a[0].length;
         int rowsB = b.length;
         int colsB = b[0].length;
-        if(rowsA != rowsB || colsA != colsB){
-            System.out.println("Rozmery jsou spatne");
+        if(colsA != rowsB){
             return null;
         }
         double[][] r = new double[rowsA][colsA];
@@ -74,7 +72,7 @@ public final class MatrixTools {
         }
         int rowsA = a.length;
         int colsA = a[0].length;
-        double[][] r = new double[rowsA][colsA];
+        double[][] r = new double[colsA][rowsA];
         for(int i=0;i<rowsA;i++){
             for(int j=0;j<colsA;j++){
                 r[i][j] = a[j][i];
@@ -211,21 +209,5 @@ public final class MatrixTools {
         }
         return true;
     }
-    public static void vypisMaticiTest(double[][] mat){
-        for(int i=0;i<mat.length;i++){
-            for(int j=0;j<mat[0].length;j++){
-                System.out.format("%.0f ",mat[i][j]);
-            }
-            System.out.println();
-        }
-    }
-        public static double[][] nactiMaticiTest(int a, int b){
-        System.out.format("zadej matici %dx%d\n",a,b);
-        double[][] mat = new double[a][b];
-        for (int i = 0; i < mat.length; i++)
-            for (int j = 0; j < mat[i].length; j++)
-                mat[i][j] = scanner.nextInt();
-        scanner.nextLine();
-        return mat;
-    }
+
 }

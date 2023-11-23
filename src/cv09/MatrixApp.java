@@ -81,8 +81,12 @@ public class MatrixApp {
         vypisMatice(matB, "Matice B");
     }
     private static void vypisMatice(double[][] mat, String titulek) {
+        if(matA != null && matB != null && mat == null){
+            System.out.println("Rozmery pro vypocet nejsou spravne");
+            return;
+        }
         if (mat == null) {
-            System.out.println("Nastala chyba s matici");
+            System.out.println("Matice nebyla zadana");
             return;
         }
         System.out.println(titulek);
