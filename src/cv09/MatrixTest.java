@@ -14,7 +14,7 @@ public class MatrixTest {
         System.out.println(MatrixTools.jeSymetrickaDleVertOsy(matB));
         vypisMaticiTest(MatrixTools.jednotkovaMatice(6));
     }
-    public static void vypisMaticiTest(double[][] mat){
+    private static void vypisMaticiTest(double[][] mat){
         for(int i=0;i<mat.length;i++){
             for(int j=0;j<mat[0].length;j++){
                 System.out.format("%.0f ",mat[i][j]);
@@ -22,7 +22,7 @@ public class MatrixTest {
             System.out.println();
         }
     }
-    public static double[][] nactiMaticiTest(int a, int b){
+    private static double[][] nactiMaticiTest(int a, int b){
         System.out.format("zadej matici %dx%d\n",a,b);
         double[][] mat = new double[a][b];
         for (int i = 0; i < mat.length; i++)
