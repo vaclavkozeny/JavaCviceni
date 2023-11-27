@@ -26,11 +26,11 @@ public class ZpracovaniPosloupnosti {
                 maxCisel = po;
                 maxIndex = i;
             }
-            System.out.format("%d: ",i+1);
+            System.out.format("%d: ",i);
             vypisPole(posloupnosti[i]);
             System.out.format("| %d \n",po);
         }
-        System.out.format("Maximalni pocet cisel je u %d posloupnosti",maxIndex+1);
+        System.out.format("Maximalni pocet cisel je u %d posloupnosti",maxIndex);
         //vypis(posloupnosti);
     }
     private static void vypis(int[][] mat){

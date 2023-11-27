@@ -1,6 +1,7 @@
 package src.cv10;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MagickyCtverec {
@@ -11,7 +12,9 @@ public class MagickyCtverec {
         System.out.println("Zadej pocet sloupcu");
         int slupce = scanner.nextInt();
         int[][] mat = nactiMatici(radky,slupce);
-        System.out.println(containNumbers(mat));
+//        int[][] mat = {{2,7,6},{9,5,1},{4,3,8}};
+//        System.out.println(containNumbers(mat));
+        System.out.format(isMagical(mat)?"Je magicky":"Neni magicky");
 
     }
     private static void vypisMatici(int[][] mat){
@@ -48,19 +51,42 @@ public class MagickyCtverec {
         }
         return true;
     }
-    private static boolean soucty(int[][] a){
-        int n = a.length;
-        int soucet = 0;
-        int temp = 0;
-        for(int i = 0; i<n; i++){
-            temp = temp + a[i][i];
+    public static boolean isMagical(int[][]a){
+        if(!containNumbers(a)){
+            throw new InputMismatchException("Ctverec neobsahuje vsechna cisla");
         }
-        soucet = temp;
-        temp = 0;
-        for(int i = 0; i<n; i++){
-            temp = temp + a[n-(i-1)][n-(i-1)];
+        int l = a.length;
+        int suma = l*(l*l+1)/2;
+        for (int i = 0; i < l; i++) {
+            int sumaRadku = 0;
+            for (int j = 0; j < l; j++) {
+                sumaRadku += a[i][j];
+            }
+            if (sumaRadku != suma) {
+                return false;
+            }
         }
-        if(soucet != temp){
+        for (int i = 0; i < l; i++) {
+            int sumaSloupcu = 0;
+            for (int j = 0; j < l; j++) {
+                sumaSloupcu += a[j][i];
+            }
+            if (sumaSloupcu != suma) {
+                return false;
+            }
+        }
+        int diagSuma = 0;
+        for (int i = 0; i < l; i++) {
+            diagSuma += a[i][i];
+        }
+        if (diagSuma != suma) {
+            return false;
+        }
+        diagSuma = 0;
+        for (int i = 0; i < l; i++) {
+            diagSuma += a[i][l - 1 - i];
+        }
+        if (diagSuma != suma) {
             return false;
         }
         return true;
