@@ -15,9 +15,9 @@ public final class PexesoTools {
     public PexesoTools() {}
 
     /**
-     * permutate array
-     * @param n
-     * @return
+     * vytvori zamichane pole o velikosti n
+     * @param n velikost pole
+     * @return zamichane pole
      */
     public static int[] permutateArray(int n){
         int[] a = new int[n];
@@ -32,6 +32,13 @@ public final class PexesoTools {
         }
         return a;
     }
+
+    /**
+     * vytvori hraci plochu pro pexeso
+     * @param radky pocet radku
+     * @param sloupce pocet sloupcu
+     * @return dvourozmerne pole pro hru pexeso
+     */
     public static int[][] getMaticePexeso(int radky, int sloupce){
         //vytvori matici a umisti do ni cisla 1,2 .. n, kazde cislo 2x
         int[][]a = new int[radky][sloupce];
@@ -53,6 +60,12 @@ public final class PexesoTools {
         }
         return a;
     }
+
+    /**
+     * vrati zda-li je matice pexesem (tedy je zde spravny pocet dvojic)
+     * @param a vstupni matice
+     * @return T/F
+     */
     public static boolean jeMaticePexeso(int[][]a){
         int radky = a.length;
         int sloupce = a[0].length;
@@ -72,31 +85,70 @@ public final class PexesoTools {
         }
         return true;
     }
+
+    /**
+     * vrati prumernou vzdalenost mezi dvema prvky
+     * @param a vstupni matice
+     * @return prumerna vzdalenost
+     */
     public static double rozhazenost(int[][]a){
-        //TODO predelat na pole a ne list
         int radky = a.length;
         int sloupce = a[0].length;
         int dvojice = (radky*sloupce)/2;
-        List<Integer> hodnoty = new ArrayList<Integer>();
+        int[] hodnoty = new int[dvojice];
         for(int i = 1; i <= dvojice; i++){
-            List<Integer> indexyCisel = new ArrayList<Integer>();
+            int tempj = -1,tempk = -1;
+            iterace:
             for(int j=0;j<radky;j++){
                 for(int k=0;k<sloupce;k++){
                     if(a[j][k] == i){
-                        indexyCisel.add(j);
-                        indexyCisel.add(k);
+                        if(tempj > -1 && tempk > -1){
+                            int vzd = Math.abs(tempj - j) + Math.abs(tempk - k);
+                            hodnoty[i-1] = vzd;
+                            break iterace;
+                        }
+                        tempj = j;
+                        tempk = k;
                     }
                 }
             }
-            //vzdalenost = abs[r1-r2] + abs[s1-s2]
-            int vzd = Math.abs(indexyCisel.get(0) - indexyCisel.get(2)) + Math.abs(indexyCisel.get(1) - indexyCisel.get(3));
-            hodnoty.add(vzd);
+            if((tempj == -1 || tempk == -1)){
+                return -i;
+            }
         }
         double sum = 0;
-        for (int i = 0; i < hodnoty.size(); i++) {
-            sum += hodnoty.get(i);
+        for (int i = 0; i < hodnoty.length; i++) {
+            sum += hodnoty[i];
         }
-        return sum/hodnoty.size();
+        return sum/hodnoty.length;
+
+        /**
+         * Chtel bych se zeptat jestli je zakomentovane reseni taky dobre nebo ne?
+         **/
+//        //TODO predelat na pole
+//        int radky = a.length;
+//        int sloupce = a[0].length;
+//        int dvojice = (radky*sloupce)/2;
+//        List<Integer> hodnoty = new ArrayList<Integer>();
+//        for(int i = 1; i <= dvojice; i++){
+//            List<Integer> indexyCisel = new ArrayList<Integer>();
+//            for(int j=0;j<radky;j++){
+//                for(int k=0;k<sloupce;k++){
+//                    if(a[j][k] == i){
+//                        indexyCisel.add(j);
+//                        indexyCisel.add(k);
+//                    }
+//                }
+//            }
+//            //vzdalenost = abs[r1-r2] + abs[s1-s2]
+//            int vzd = Math.abs(indexyCisel.get(0) - indexyCisel.get(2)) + Math.abs(indexyCisel.get(1) - indexyCisel.get(3));
+//            hodnoty.add(vzd);
+//        }
+//        double sum = 0;
+//        for (int i = 0; i < hodnoty.size(); i++) {
+//            sum += hodnoty.get(i);
+//        }
+//        return sum/hodnoty.size();
     }
     private static void vypisMatice(int[][] mat){
         for(int i=0;i<mat.length;i++){
