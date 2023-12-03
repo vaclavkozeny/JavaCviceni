@@ -22,7 +22,7 @@ public class ZpracovaniPosloupnosti {
         for(int i = 0; i < posloupnosti.length; i++){
             ArrayTools.sort(posloupnosti[i]);
             int po = ArrayTools.pocetRuznychUsp(posloupnosti[i]);
-            if(ArrayTools.pocetRuznychUsp(posloupnosti[i])>maxCisel){
+            if(po>maxCisel){
                 maxCisel = po;
                 maxIndex = i;
             }

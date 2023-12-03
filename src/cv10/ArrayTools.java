@@ -1,9 +1,7 @@
 package src.cv10;
 
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Scanner;
-import java.util.concurrent.LinkedTransferQueue;
+
 import java.util.stream.IntStream;
 
 public final class ArrayTools {
