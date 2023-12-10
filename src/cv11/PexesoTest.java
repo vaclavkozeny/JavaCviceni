@@ -3,8 +3,9 @@ package src.cv11;
 public class PexesoTest {
     public static void main(String[] args) {
 //        vypis(PexesoTools.permutateArray(10));
-        int[][] px = PexesoTools.getMaticePexeso(5,5);
-        vypisMatice(px);
+        int[][] px = PexesoTools.getMaticePexeso(500,500);
+        System.out.println("matice vygenerovana");
+        //vypisMatice(px);
         System.out.println();
         System.out.println(PexesoTools.jeMaticePexeso(px));
         System.out.println();
