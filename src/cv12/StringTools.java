@@ -15,12 +15,11 @@ public final class StringTools {
     }
     private static final char[] cifry = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
     public static long prevodDoDesitkove(String str, byte soustava){
-        return switch (soustava) {
-            case 16 -> hexToDec(str);
-            case 2 -> binToDec(str);
-            case 8 -> octToDec(str);
-            default -> -1;
-        };
+        long suma = 0;
+        for (int i = str.length()-1; i >= 0 ; i--) {
+            suma = suma + ((long) indexOf(cifry, str.charAt(i)) * (long)Math.pow(soustava,str.length()-1-i));
+        }
+        return suma;
     }
     private static int indexOf(char[] a,char n){
         for (int i = 0; i < a.length ; i++) {
@@ -30,65 +29,18 @@ public final class StringTools {
         }
         return -1;
     }
-    private static long hexToDec(String str){
-        long suma = 0;
-        for (int i = str.length()-1; i >= 0 ; i--) {
-            suma = suma + ((long) indexOf(cifry, str.charAt(i)) * (long)Math.pow(16,str.length()-1-i));
-        }
-        return suma;
-    }
-    private static long binToDec(String str){
-        long suma = 0;
-        for (int i = str.length()-1; i >= 0 ; i--) {
-            suma = suma + ((long) indexOf(cifry, str.charAt(i)) * (long)Math.pow(2,str.length()-1-i));
-        }
-        return suma;
-    }
-    private static long octToDec(String str){
-        long suma = 0;
-        for (int i = str.length()-1; i >= 0 ; i--) {
-            suma = suma + ((long) indexOf(cifry, str.charAt(i)) * (long)Math.pow(8,str.length()-1-i));
-        }
-        return suma;
-    }
+
     public static String prevodZDesitkove(long cislo, byte soustava){
-        return switch (soustava) {
-            case 16 -> decToHex(cislo);
-            case 2 -> decToBin(cislo);
-            case 8 -> decToOct(cislo);
-            default -> "Spatne zadana soustava";
-        };
-    }
-    private static String decToHex(long cislo){
         StringBuilder vysledek = new StringBuilder();
         int zbytek;
         while(cislo >= 1){
-            zbytek = (int)cislo%16;
+            zbytek = (int)cislo%soustava;
             vysledek.append(cifry[zbytek]);
-            cislo/=16;
+            cislo/=soustava;
         }
         return vysledek.reverse().toString();
     }
-    private static String decToBin(long cislo){
-        StringBuilder vysledek = new StringBuilder();
-        int zbytek;
-        while(cislo >= 1){
-            zbytek = (int)cislo%2;
-            vysledek.append(cifry[zbytek]);
-            cislo/=2;
-        }
-        return vysledek.reverse().toString();
-    }
-    private static String decToOct(long cislo){
-        StringBuilder vysledek = new StringBuilder();
-        int zbytek;
-        while(cislo >= 1){
-            zbytek = (int)cislo%8;
-            vysledek.append(cifry[zbytek]);
-            cislo/=8;
-        }
-        return vysledek.reverse().toString();
-    }
+
     /*
      Sifrovani textu, sifrovat pouze pismena anglicke abecedy.
      pri sifrovani aplikovat postupne posun definovany jednotlivymi znaky hesla prevedeneho na velka pismena.
