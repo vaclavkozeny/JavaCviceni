@@ -1,4 +1,4 @@
-package src.cv13;
+package src.testy;
 
 public class zapocet11_12_23 {
     public static void main(String[] args) {
