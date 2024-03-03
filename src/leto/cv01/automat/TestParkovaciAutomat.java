@@ -5,55 +5,57 @@ import java.util.Scanner;
 
 public class TestParkovaciAutomat {
     private static final Scanner scanner = new Scanner(System.in);
-    private static ArrayList<ParkovaciAutomat.mince> platba;
-    private static int aktualniStavVAutomatu;
     public static void main(String[] args) {
+        // vytvori automat
         ParkovaciAutomat parkovaciAutomat = new ParkovaciAutomat(0.5);
-        platba = new ArrayList<ParkovaciAutomat.mince>();
+
+        //vypise a obslouzi 1. menu
         vypisMenu();
         int volba = scanner.nextInt();
         obsluzVolbu(volba);
+
+        //vypise a obslouzi 2. menu
         volba = scanner.nextInt();
         obsluzVolbuParkovat(volba, parkovaciAutomat);
-//        ParkovaciAutomat parkovaciAutomat = new ParkovaciAutomat(0.5);
-//        ArrayList<ParkovaciAutomat.mince> platba = new ArrayList<ParkovaciAutomat.mince>();
-//        platba.add(ParkovaciAutomat.mince.DVACETIKORUNA);
-//        platba.add(ParkovaciAutomat.mince.DESETIKORUNA);
-//        System.out.println(parkovaciAutomat.Pay(platba));
+
+        //vypise a obslouzi 3. menu
+        vypisMenuPlatit(parkovaciAutomat);
+        volba = scanner.nextInt();
+        System.out.println(obsluzVolbuPlatit(volba, parkovaciAutomat));
     }
 
     private static void obsluzVolbu(int v) {
         if(v == 1)
             vypisMenuParkovat();
+        else
+            System.exit(0);
     }
     private static void obsluzVolbuParkovat(int v, ParkovaciAutomat pa) {
         if(v == 1){
-            aktualniStavVAutomatu = 0;
-            VhazovatMince();
-        } else if (v == 2) {
-            System.out.println(pa.Pay(platba));
+            MinceCyklus(pa);
         }
+        else
+            System.exit(0);
 
     }
-    private static void VhazovatMince(){
-        int volba;
-        do{
-            vypisMenuMince();
-            volba = scanner.nextInt();
-            switch (volba){
-                case 1: platba.add(ParkovaciAutomat.mince.KORUNA);aktualniStavVAutomatu+=1;break;
-                case 2: platba.add(ParkovaciAutomat.mince.DVOUKORUNA);aktualniStavVAutomatu +=2;break;
-                case 3: platba.add(ParkovaciAutomat.mince.PETIKORUNA);aktualniStavVAutomatu +=5;break;
-                case 4: platba.add(ParkovaciAutomat.mince.DESETIKORUNA);aktualniStavVAutomatu +=10;break;
-                case 5: platba.add(ParkovaciAutomat.mince.DVACETIKORUNA);aktualniStavVAutomatu +=20;break;
-                case 6: platba.add(ParkovaciAutomat.mince.PADESATIKORUNA);aktualniStavVAutomatu +=50;break;
-                case 0: break;
-                default:
-                    System.out.println("Neznama volba\n");
-                    break;
-            }
-        }while (volba > 0);
+    private static void MinceCyklus(ParkovaciAutomat pa){
+        int v;
+        do {
+            vypisMenuMince(pa);
+            v = scanner.nextInt();
+            pa.VhodMinci(v);
+        }while (v > 0);
     }
+    private static String obsluzVolbuPlatit(int v, ParkovaciAutomat pa) {
+        if(v == 1){
+            return pa.Pay();
+        }
+        else if(v == 0){
+            return String.format("Bylo vam vraceno %d korun",pa.getAktualniStavVAutomatu());
+        }
+        return "Neznama volba";
+    }
+
     private static void vypisMenu() {
         System.out.println("Parkovaci automat");
         System.out.println("1. Parkovat");
@@ -62,12 +64,16 @@ public class TestParkovaciAutomat {
     private static void vypisMenuParkovat() {
         System.out.println("Parkovat");
         System.out.println("1. Vlozit mince");
-        System.out.println("2. Zaplatit");
+        System.out.println("0. Konec");
+    }
+    private static void vypisMenuPlatit(ParkovaciAutomat pa) {
+        System.out.format("Aktualni stav je: %d\n",pa.getAktualniStavVAutomatu());
+        System.out.println("1. Zaplatit");
         System.out.println("0. Storno");
     }
-    private static void vypisMenuMince() {
+    private static void vypisMenuMince(ParkovaciAutomat pa) {
         System.out.println("Vhazuj mince");
-        System.out.format("Aktualni stav: %d\n",aktualniStavVAutomatu);
+        System.out.format("Aktualni stav: %d\n",pa.getAktualniStavVAutomatu());
         System.out.println("1. Koruna");
         System.out.println("2. Dvoukoruna");
         System.out.println("3. Petikoruna");
