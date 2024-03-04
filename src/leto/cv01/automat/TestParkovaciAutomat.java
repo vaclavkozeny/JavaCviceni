@@ -24,12 +24,22 @@ public class TestParkovaciAutomat {
         System.out.println(obsluzVolbuPlatit(volba, parkovaciAutomat));
     }
 
+    /**
+     * obsouzi 1. menu (volby: parkovat / konec)
+     * @param v zvolena volba
+     */
     private static void obsluzVolbu(int v) {
         if(v == 1)
             vypisMenuParkovat();
         else
             System.exit(0);
     }
+
+    /**
+     * obslouzi 2. menu (volby: vhazovat mince / konec)
+     * @param v zvolena volba
+     * @param pa predani parkovaci automatu pro dalsi pouziti
+     */
     private static void obsluzVolbuParkovat(int v, ParkovaciAutomat pa) {
         if(v == 1){
             MinceCyklus(pa);
@@ -38,6 +48,11 @@ public class TestParkovaciAutomat {
             System.exit(0);
 
     }
+
+    /**
+     * nacita mince od uzivatele
+     * @param pa objekt parkovaci automat pro moznost zaplaceni
+     */
     private static void MinceCyklus(ParkovaciAutomat pa){
         int v;
         do {
@@ -46,6 +61,13 @@ public class TestParkovaciAutomat {
             pa.VhodMinci(v);
         }while (v > 0);
     }
+
+    /**
+     * obslouzi 3. menu (volby: zaplatit / storno)
+     * @param v volba
+     * @param pa objekt patkovaci automat
+     * @return String podle zvolene volby (zaplacene / vraceny penize)
+     */
     private static String obsluzVolbuPlatit(int v, ParkovaciAutomat pa) {
         if(v == 1){
             return pa.Pay();
@@ -56,6 +78,9 @@ public class TestParkovaciAutomat {
         return "Neznama volba";
     }
 
+    /**
+     * Vypisy jednotlivych menu
+     */
     private static void vypisMenu() {
         System.out.println("Parkovaci automat");
         System.out.println("1. Parkovat");
