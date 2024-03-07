@@ -2,7 +2,16 @@ package src.leto.cv01.automat;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+/**
+ * <h2 style="font-family: 'Comic Sans MS'; color:red">Parkovaci automat</h2>
+ * <p>.Pay() -> slouzi k zaplaceni</p>
+ * <p>.vhodMinci(volba) -> slouzi k pridani minci do pole pro platbu</p>
+ * <p>zbytek metod je v obsluzne tride TestParkovaciAutomat
+ *       <p>- vypisy menu</p>
+ *       <p>- obsluha voleb</p>
+ * </p>
+ * @author <a href="https://github.com/vaclavkozeny">Vaclav Kozeny</a>
+ */
 public class ParkovaciAutomat {
 
     LocalDateTime odjezd;
@@ -50,7 +59,7 @@ public class ParkovaciAutomat {
         }
         posun = (int) Math.floor(penize/taxa);
         odjezd = odjezd.plusMinutes(posun);
-        return String.format("Zaplaceno do %d:%d",odjezd.getHour(), odjezd.getMinute());
+        return String.format("Zaplaceno do %d:%02d",odjezd.getHour(), odjezd.getMinute());
     }
 
     /**

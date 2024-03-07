@@ -11,6 +11,8 @@ public class DveRovnice {
     static private final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         double a,b,c,d,e,f,x,y;
+        // a b = c
+        // d e = f
         System.out.println("zadej prvni rovnici (ax + by = c)");
         a = scanner.nextDouble();
         b = scanner.nextDouble();
@@ -25,7 +27,7 @@ public class DveRovnice {
         }
         double D = a*e - b*d;
         double Dx = c*e - b*f;
-        double Dy = a*f -c*d;
+        double Dy = a*f - c*d;
         if(D == 0 && Dx == 0 && Dy == 0){
             System.out.println("Rovnice ma nekonecne mnoho reseni");
         } else if (D == 0 && (Dx != 0 || Dy != 0)) {

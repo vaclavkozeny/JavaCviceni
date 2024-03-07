@@ -13,12 +13,12 @@ public class PokladnickaNeotviratelna {
     public void Vlozit(int a){
         kontrolaCastky(a);
         if(rozbita)
-            throw new IllegalArgumentException("Pokladna již byla rozbita");
+            throw new IllegalStateException("Pokladna již byla rozbita");
         this.amount += a;
     }
     public int Vybrat(){
         if(rozbita)
-            throw new IllegalArgumentException("Pokladna již byla rozbita");
+            throw new IllegalStateException("Pokladna již byla rozbita");
         this.rozbita = true;
         return amount;
     }
