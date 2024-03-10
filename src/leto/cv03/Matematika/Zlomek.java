@@ -30,4 +30,10 @@ public class Zlomek {
         int jm = this.jmenovatel * zlomek.jmenovatel;
         return new Zlomek(cit, jm);
     }
+    public Zlomek nasob(Zlomek zlomek){
+        return new Zlomek(this.citatel*zlomek.citatel, this.jmenovatel * zlomek.jmenovatel);
+    }
+    public Zlomek vydel(Zlomek zlomek){
+        return new Zlomek(this.citatel*zlomek.jmenovatel,this.jmenovatel*zlomek.citatel);
+    }
 }

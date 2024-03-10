@@ -5,5 +5,6 @@ public class MainClass {
         Zlomek zlomek = new Zlomek(18,7);
         System.out.println(zlomek);
         System.out.println(zlomek.secti(new Zlomek(7,18)).toDouble());
+        System.out.println(zlomek.nasob(new Zlomek(7,18)));
     }
 }
