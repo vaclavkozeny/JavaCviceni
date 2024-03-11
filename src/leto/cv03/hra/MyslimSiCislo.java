@@ -40,17 +40,17 @@ public class MyslimSiCislo {
         max = horniMez;
     }
 
-    public void setDolniMez(int dm){
-        if(dm < this.horniMez || dm > 0)
-            this.dolniMez = dm;
-    }
-    public void setHorniMez(int hm){
-        if(hm > this.dolniMez)
-            this.horniMez = hm;
-    }
-    public int[] getMeze(){
-        return new int[]{this.dolniMez, this.horniMez};
-    }
+//    public void setDolniMez(int dm){
+//        if(dm < this.horniMez || dm > 0)
+//            this.dolniMez = dm;
+//    }
+//    public void setHorniMez(int hm){
+//        if(hm > this.dolniMez)
+//            this.horniMez = hm;
+//    }
+//    public int[] getMeze(){
+//        return new int[]{this.dolniMez, this.horniMez};
+//    }
     public boolean getVyhra(){
         return vyhra;
     }
