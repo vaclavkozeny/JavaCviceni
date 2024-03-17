@@ -1,11 +1,11 @@
-package src.leto.cv04;
+package src.leto.cv04.polynomy;
 
 import java.util.Arrays;
 import java.util.DuplicateFormatFlagsException;
 
 /**
  *
- * @author Jirina
+ * @author Jirina + Vaclav
  */
 public class Polynom {
     private final double[] koef;
@@ -92,10 +92,11 @@ public class Polynom {
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < pocetKoef(); i++){
             if(i==0)
-                stringBuilder.append(koef[i] + " + ");
-            if(i==1)
-                stringBuilder.append(koef[i] + "x");
-            stringBuilder.append(koef[i] + "x^" + i + " + ");
+                stringBuilder.append(String.format("%f + ",koef[i]));
+            else if(i==1)
+                stringBuilder.append(String.format("%f*x ",koef[i]));
+            else
+                stringBuilder.append(String.format("+ %f*x^%d",koef[i],i));
         }
         return stringBuilder.toString();
     }
@@ -116,9 +117,19 @@ public class Polynom {
      * @param desMist pocet desetinnych mist formatu koeficientů.
      * @return testovy retezec s formatovanym polynomem.
      */
-//    public String toStringFmt(int desMist) {
-//
-//    }
+    public String toStringFmt(int desMist) {
+        String formatCisel = "%."+desMist+"f";
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i < pocetKoef(); i++){
+            if(i==0)
+                stringBuilder.append(String.format(formatCisel+" + ",koef[i]));
+            else if(i==1)
+                stringBuilder.append(String.format(formatCisel+"*x ",koef[i]));
+            else
+                stringBuilder.append(String.format("+ "+formatCisel+"*x^%d",koef[i],i));
+        }
+        return stringBuilder.toString();
+    }
 
     @Override
     public String toString() {
