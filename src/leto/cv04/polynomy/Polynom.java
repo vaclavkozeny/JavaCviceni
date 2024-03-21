@@ -77,12 +77,20 @@ public class Polynom {
      * @param x realne cislo pro ktere ma byt hodnota polynomu vypoctena.
      * @return hodnota polynomu pro zadane x.
      */
-//    public double getHodnota(double x) {
-//
-//    }
-//    public double[] getDerivace(){
-//
-//    }
+    public double getHodnota(double x) {
+        double vysledek = 0;
+        for(int i = 0; i < pocetKoef(); i++){
+            vysledek += koef[i] * Math.pow(x,i);
+        }
+        return vysledek;
+    }
+    public double[] getDerivace(){
+        double[] koeficienty = new double[pocetKoef()-1];
+        for (int i = 1; i < pocetKoef(); i++) {
+            koeficienty[i-1] = koef[i]*i;
+        }
+        return koeficienty;
+    }
     /**
      * Poskytuje textovy retezec s polynomem.
      * Textovy retezec je v implicitnim formatu.
