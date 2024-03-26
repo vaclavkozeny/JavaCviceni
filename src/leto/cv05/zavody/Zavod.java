@@ -2,6 +2,7 @@ package src.leto.cv05.zavody;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Optional;
 
 public class Zavod {
@@ -27,11 +28,23 @@ public class Zavod {
         zavodniks.add(new Zavodnik(jmeno,prijmeni,regCisla));
         return regCisla++;
     }
-    @Override
-    public String toString(){
+    public boolean odregistraceZavodnika(int regCislo){
+        ListIterator<Zavodnik> listIterator = zavodniks.listIterator();
+        while(listIterator.hasNext()){
+            Zavodnik zavodnik = listIterator.next();
+            if(zavodnik.getId() == regCislo){
+                listIterator.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String toString(MetodaRazeniZavodniku metodaRazeni){
+        zavodniks.sort(metodaRazeni.getKomparator());
         StringBuilder stringBuilder = new StringBuilder();
         for (Zavodnik zav:zavodniks) {
-            stringBuilder.append(String.format("%s %s id: %d start: %s\n",zav.getJmeno(),zav.getPrijmeni(),zav.getId(),zav.getStart()));
+            stringBuilder.append(String.format("%s %s id: %d cas: %s\n",zav.getJmeno(),zav.getPrijmeni(),zav.getId(),zav.getDobaNaTratiSTR()));
         }
         return stringBuilder.toString();
     }
@@ -39,7 +52,14 @@ public class Zavod {
         Optional<Zavodnik> zavOptional = zavodniks.stream().filter(i->i.getId()==id).findFirst();
         if(zavOptional.isPresent()){
             Zavodnik zav = zavOptional.get();
-            zav.setStart(LocalTime.now());
+            zav.setStart(cas);
+        }
+    }
+    public void zaznamenejCil(int id, LocalTime cas){
+        Optional<Zavodnik> zavOptional = zavodniks.stream().filter(i->i.getId()==id).findFirst();
+        if(zavOptional.isPresent()){
+            Zavodnik zav = zavOptional.get();
+            zav.setCil(cas);
         }
     }
     // static loadFromFile
