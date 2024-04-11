@@ -3,7 +3,7 @@
  * This program is part of Java programing education. 
  * You can use it as you need to learn Java. 
  */
-package hry.pexeso;
+package src.leto.cv08.hry.pexeso;
 
 /**
  *

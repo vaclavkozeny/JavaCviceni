@@ -1,4 +1,4 @@
-package hry.pexeso;
+package src.leto.cv08.hry.pexeso;
 
 public class KozenyPexeso implements HraPexeso {
     private final int pocetDvojic;

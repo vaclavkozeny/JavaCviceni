@@ -1,6 +1,7 @@
-package apps;
+package src.leto.cv08.apps;
 
-import hry.pexeso.HraPexeso;
+
+import src.leto.cv08.hry.pexeso.HraPexeso;
 
 public class KozenyTestApp {
     public static void main(String[] args) {
