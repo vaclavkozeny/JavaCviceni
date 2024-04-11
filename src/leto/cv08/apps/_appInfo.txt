@@ -1,0 +1,2 @@
+Zde umistit tridu s uzivatelskym rozhranim programu pro PEXESO.
+Tridu s hlavnim programem nazvat PrijmeniPexesoApp.

@@ -1,0 +1,6 @@
+Zde umistit tridu s s implementaci hry PEXESO.
+Tridu nazvat PrijmeniPexeso.
+Trida musi implementovat interface HraPexeso.
+Trida musi mit jeden konstruktor s dvema celociselnymi parametry.
+Konstruktor deklarujte jako "package private" - 
+tedy bez modifikatoru pristupu (tj. neuvadet private nebo public)
