@@ -1,4 +1,4 @@
-package cv11.kozeny;
+package src.leto.cv11.kozeny;
 
 import java.io.*;
 import java.nio.file.Files;

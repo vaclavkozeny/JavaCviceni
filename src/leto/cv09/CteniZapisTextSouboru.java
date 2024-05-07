@@ -49,25 +49,25 @@ public class CteniZapisTextSouboru {
         System.out.println("");
         System.out.println("Zadavej text pro ulozeni o souboru: ");
         cesta = "b.txt";
-        try ( BufferedWriter br = Files.newBufferedWriter(Path.of(cesta),
+        try (BufferedWriter br = Files.newBufferedWriter(Path.of(cesta),
                 StandardOpenOption.APPEND)) {
             while ((vst = sc.nextLine()).length() > 0) {
                 br.write(vst);
                 br.write(EOLN);
             }
 
-        } catch(NoSuchFileException nsfe) {
+        } catch (NoSuchFileException nsfe) {
             System.out.println("Soubor neexistuje zapis");
         }
         // cteni textoveho souboru
         // nacteni druheho vytvoreneho souboru
         System.out.println("");
         System.out.println("Do souboru bylo zapsano: ");
-        try ( BufferedReader br = Files.newBufferedReader(Path.of("b.txt"))) {
+        try (BufferedReader br = Files.newBufferedReader(Path.of("b.txt"))) {
             while ((vst = br.readLine()) != null) {
                 System.out.println(vst);
             }
-        } catch(NoSuchFileException nsfe) {
+        } catch (NoSuchFileException nsfe) {
             System.out.println("Soubor neexistuje cteni");
         }
 

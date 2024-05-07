@@ -1,4 +1,4 @@
-package cv11.kozeny;
+package src.leto.cv11.kozeny;
 
 public class Atlet {
     private int id;
