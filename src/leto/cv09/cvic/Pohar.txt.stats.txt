@@ -1,0 +1,5 @@
+Znaky: 439
+Pismena: 357
+Cisla: 0
+Radky: 35
+Neprazdne radky: 17

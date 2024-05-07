@@ -1,0 +1,93 @@
+Program pro zpracování výsledků atletického víceboje
+Procvičovaná problematika
+Zpracování dat uložených v diskových souborech. Soubory textové a binární. Využití prostředků třídy
+RandomAccessFile – přidávání, čtení, oprava, odstraňování záznamů. Objektový návrh, práce
+s výjimkami.
+Tematická oblast
+„Atletický víceboj je souhrnný název pro kombinovanou lehkoatletickou sportovní disciplínu, která se skládá
+z několika původně samostatných lehkoatletických disciplín. Má svá přesně stanovená pravidla a její
+jednotlivé disciplíny mají v průběhu sportovní soutěže pevně stanovené pořadí.“
+Počet disciplín a jejich parametry se mění podle toho, zda se jedná o muže či ženy, starší nebo mladší žáky,
+starší nebo mladší žákyně, dorostence a juniory. Soutěží se v družstvech a jednotlivcích. Výsledky
+jednotlivých atletů v jednotlivých disciplínách se převádí na body. Na bodování se používají bodovací
+tabulky.
+Specifikace programu
+Cílem práce je vytvořit softwarovou podporu (systém tříd) pro zaznamenávání a vyhodnocení atletického
+víceboje.
+Program na svém vstupu obdrží počet a seznam disciplín a seznam atletů, kteří jsou do soutěže přihlášeni.
+Cestu k diskovému souboru (včetně názvu) s těmito daty vybere/zadá uživatel programu. Tento vstupní
+soubor je textový. Umístění tohoto souboru zároveň představuje i umístění dalších souborů vytvořených
+nebo spravovaných v programu. Pokud vstupní soubor obsahuje nulový počet disciplín nebo atletů,
+program má po spuštění vypsat tuto informaci uživateli a další aktivity neposkytovat.
+Program má při svém prvním spuštění na základě vstupního souboru vytvořit výstupní diskový soubor
+(soubor výsledků) do kterého bude zaznamenávat body jednotlivých atletů v jednotlivých disciplínách.
+Tento soubor bude binární. Do souboru je pro každého atleta zaznamenáno jeho startovní číslo a počet
+bodů v jednotlivých disciplínách -1 (hodnota představuje informaci, že daný atlet zatím disciplínu
+neabsolvoval). Při dalším spuštění nebude tento soubor vytvářen, program má pouze ověřit, že je
+konzistentní s počtem disciplín.
+Při prvním spuštění je možno rovněž vytvořit soubor odhlášených/diskvalifikovaných atletů, popřípadě se
+bude vytvářet až při prvním zápisu do tohoto souboru. Při dalším spuštění pouze ověřit, zda tento soubor
+existuje, zjistit počet záznamů v souboru.
+Při dalším spuštění programu by měl počet záznamů obsažených v souboru výsledků a v souboru
+odhlášených atletů být shodný s počtem atletů ve vstupním souboru.
+Vytvořená softwarová podpora (systém tříd) má podporovat následující akce:
+▪ Přehled jednotlivých disciplín – poskytnout formou víceřádkového řetězce nebo jako pole nebo
+seznam víceřádkových řetězců.
+▪ Přehled atletů, kteří se soutěže účastní – poskytnout formou víceřádkového řetězce nebo jako pole
+nebo seznam víceřádkových řetězců – vypisovat startovní číslo, jméno příjmení.
+▪ Zaznamenání počtu bodů konkrétního atleta v jedné disciplíně – konkrétní atlet bude zadán
+číslem, disciplína pořadím v seznamu disciplín, dále bude zadán dosažený počet bodů. Při realizaci
+této akce má být do souboru výsledků zaznamenán zadaný počet bodů. Nutno zapsat na příslušné
+místo v souboru. Pokud je na daném místě již nějaký počet bodů zaznamenán, potom by měla být
+generována výjimka. Obdobně generovat vhodnou výjimku v případě neplatných dat – chybné číslo
+atleta, pořadí disciplíny, záporné body.
+▪ Opravit počet bodů konkrétního atleta v jedné disciplíně – tato akce by měla představovat téměř
+totéž, co předchozí s tím rozdílem, že zaznamená výsledek bez ohledu na to, zda již má atlet body
+zaznamenané, či nikoli. Obě akce lze realizovat jednou metodou, která bude oba případy rozlisovat
+jedním dalším parametrem force typu boolean.
+▪ Zaznamenat odstoupení atleta ze soutěže – atlet bude zadán číslem. V tomto případě má program
+odstranit záznam daného atleta ze souboru výsledků a vložit tento záznam do souboru odhlášených
+nebo diskvalifikovaných atletů.
+▪ Přehled aktuálních výsledků – atleti a u každého atleta, dosažený celkový počet bodů, počty bodů
+v jednotlivých disciplínách, pořadí atletů dle toho, jak jsou záznamy v souboru. Přehled by měl
+obsahovat nejprve aktivní a poté odhlášené/diskvalifikované atlety. Přehled poskytnout formou
+víceřádkového řetězce nebo jako pole nebo seznam víceřádkových řetězců
+▪ Výpis výsledkové listiny uspořádané dle dosažených bodů.
+Výsledky atletů v jednotlivých disciplínách bude program uchovávat a spravovat přímo v souboru. Pro
+přístup k datům v tomto souboru pak bude nutné v Javě použít RandomAccessFile třídu.
+Implementovaný systém tříd, který bude podporovat realizaci uvedených akcí by měl být zcela nezávislý na
+uživatelském rozhraní (webová aplikace, desktopová aplikace s GUI, konzolová aplikace s textovým
+rozhraním). Je třeba navrhnou vhodný systém tříd, který bude realizaci uvedených akcí podporovat a bude
+použitelný v uceleném programu.
+Pro ověření funkcionalit a uživatelské testování bude vytvořen program (hlavní třída) spouštěný z příkazové
+řádky. Program bude nabízet volby pro výše uvedené akce, jejichž realizaci vytvořený softwarový systém
+podporuje a dále pak volbu pro ukončení programu.
+Program má pracovat se třemi různými soubory:
+Vstupní soubor se seznamem disciplín a seznamem přihlášených atletů. Tento soubor je textový. Soubor je
+v UTF8 kódování. Soubor může/nemusí mít příponu. Na prvním řádku souboru je počet disciplín, následuje
+seznam disciplín (názvy, název každé z disciplín na samostatném řádku). Na dalších řádcích je seznam atletů
+přihlášených do soutěže. Data každého atleta začínají na samostatném řádku. Pro každého atleta závodní
+číslo, jméno, příjmení. Jednotlivé hodnoty oddělené standardním oddělovačem (mezera, tabulátor, …).
+Soubor může obsahovat i prázdné řádky.
+Soubor výsledků. Tento soubor je binární. Záznamy jsou stejné délky (záznam ~ data/výsledky jednoho
+atleta). Soubor má stejné „základní“ jméno jako vstupní soubor a příponu vysl. V souboru je nejprve
+celkový počet disciplín a poté počet aktivních atletů, obě celá čísla jako hodnoty typu int. Soubor
+obsahuje záznamy s výsledky jednotlivých atletů. Pro každého atleta jeho číslo, a dále výsledky/body
+v jednotlivých disciplínách. V souboru není zaznamenána informace o celkovém počtu bodů každého atleta.
+Pokud atlet disciplínu neabsolvoval je na příslušné pozici v souboru zaznamenána hodnota -1 (respektive
+obecně záporné číslo). Pokud je n disciplín, potom záznam obsahuje n+1 celočíselných hodnot. Číslo atleta
+je zaznamenáno jako hodnota typu int, body z jednotlivých disciplín jako hodnoty typu short. Z tohoto
+lze jednoduše odvodit i délku jednotlivých záznamů a pozici začátku jednotlivých záznamů a dílčích
+výsledků. Zároveň lze z délky souboru a délky jednoho záznamu určit celkový počet záznamů v souboru.
+Soubor odstoupených atletů. Soubor stejného jména a přípona dis. Tento soubor je binární. Soubor má
+prakticky stejnou strukturu jako soubor se zaznamenanými výsledky.
+Poznámky:
+V atletickém víceboji jsou základními výsledky jednotlivých disciplín časy nebo metry (centimetry) a nikoli přímo body.
+Na body jsou tyto výsledky převáděny následně pomocí tabulek, což by měl skutečný program podporovat. Základní
+motivací uvedeného zadání je přímý přístup k datům v souboru. Pro tyto účely takto vymezené zadání zcela postačí.
+V reálném programu bychom asi záznamy diskvalifikovaných atletů nepřesouvali do jiného souboru. Je to nepraktické.
+Postačilo by záznam například rozšířit o jednu další hodnotu (boolean nebo celé číslo) pro zaznamenání stavu
+daného účastníka soutěže (stav by mohl být i vícehodnotový – aktivní, nenastoupil, odstoupen). Zde jsou tyto
+požadované manipulace motivovány potřebou nějakým způsobem do implementace zahrnout o „odstraňování
+záznamů“ ze souboru, zároveň není vhodné data ze systému jen tak odstraňovat, proto jsou zapsány do souboru,
+který tak obsahuje záznamy „odstraněné ze seznamu aktivních“.

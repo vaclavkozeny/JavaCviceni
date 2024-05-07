@@ -61,7 +61,6 @@ public class CteniZapisTextSouboru {
         }
         // cteni textoveho souboru
         // nacteni druheho vytvoreneho souboru
-        // instance BufferedWriter ziskana pomoci metody Files.newBufferedReader
         System.out.println("");
         System.out.println("Do souboru bylo zapsano: ");
         try ( BufferedReader br = Files.newBufferedReader(Path.of("b.txt"))) {
