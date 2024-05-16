@@ -23,14 +23,5 @@ public class Zbozi {
         dos.writeUTF(nazev);
         dos.writeInt(pocet_na_sklade);
     }
-    public static Zbozi LoadFromFile(DataInput dis) throws IOException {
-        int id = dis.readInt();
-        try {
-            String nazev = dis.readUTF();
-            int pocet_na_sklade = dis.readInt();
-            return new Zbozi(id, nazev, pocet_na_sklade);
-        } catch (EOFException ex) {
-            throw new IOException("Chybny format souboru");
-        }
-    }
+
 }

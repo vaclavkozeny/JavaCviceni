@@ -116,6 +116,16 @@ public class Miny {
         }
     }
     public static void odkryj(int x, int y) {
+        if(mask[x][y]){
+            return;
+        }
+        mask[x][y] = true;
+        if(pole[x][y] == 0){
+            if(x > 0) odkryj(x-1,y);
+            if(y > 0) odkryj(x,y-1);
+            if(x < pole.length-1) odkryj(x+1,y);
+            if(y < pole[x].length-1) odkryj(x,y+1);
+        }
     }
     public static void vypis(int[][] pole) {
         for (int i = 0; i < pole.length; i++) {

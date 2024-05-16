@@ -1,6 +1,5 @@
 package src.leto.semPR;
 
-import src.leto.cv10.Banka.Ucet;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -24,8 +23,11 @@ public class SkladApp {
     private static void VypisMenu(){
         System.out.println("1. Vytvor pobocku");
         System.out.println("2. Vyber pobocku");
-        System.out.println("3. Pridej zbozi");
-        System.out.println("4. Odeber zbozi");
+        System.out.println("3. Pridej nove zbozi");
+        System.out.println("4. Pridej zbozi");
+        System.out.println("5. Odeber zbozi");
+        System.out.println("6. Vypis zbozi");
+        System.out.println("0. Konec");
 
     }
     private static void ObsluzVolbu(int volba) throws IOException {
@@ -37,18 +39,72 @@ public class SkladApp {
                 vyberPobocku();
                 break;
             case 3:
-                pridejZbozi();
+                pridejNoveZbozi();
                 break;
-            case 4:
+//            case 4:
+//                pridejZbozi();
+//                break;
+            case 5:
                 odeberZbozi();
+                break;
+            case 6:
+                vypisZbozi();
                 break;
         }
     }
 
-    private static void odeberZbozi() {
+    private static void vypisZbozi() {
+        if(pobocka == null){
+            System.out.println("Nejdrive musis vybrat pobocku");
+            return;
+        }
+        System.out.println("\nVypis zbozi");
+        try {
+            System.out.println(pobocka.vypisZbozi());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static void pridejZbozi() throws IOException {
+//    private static void pridejZbozi() {
+//        if(pobocka == null){
+//            System.out.println("Nejdrive musis vybrat pobocku");
+//            return;
+//        }
+//        System.out.println("\nPridani zbozi");
+//        System.out.println("Zadej id zbozi");
+//        int idZbozi = scanner.nextInt();
+//        System.out.println("Zadej pocet kusu zbozi: ");
+//        int pocetZbozi = scanner.nextInt();
+//        try {
+//            pobocka.pridejZbozi(idZbozi,pocetZbozi);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    private static void odeberZbozi() {
+        if(pobocka == null){
+            System.out.println("Nejdrive musis vybrat pobocku");
+            return;
+        }
+        System.out.println("\nOdebrani zbozi");
+        System.out.println("Zadej id zbozi");
+        int idZbozi = scanner.nextInt();
+        System.out.println("Zadej pocet kusu zbozi: ");
+        int pocetZbozi = scanner.nextInt();
+        try {
+            pobocka.odeberZbozi(idZbozi,pocetZbozi);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void pridejNoveZbozi() throws IOException {
+        if(pobocka == null){
+            System.out.println("Nejdrive musis vybrat pobocku");
+            return;
+        }
         System.out.println("\nPridani zbozi");
         System.out.println("Zadej id zbozi");
         int idZbozi = scanner.nextInt();
@@ -58,7 +114,7 @@ public class SkladApp {
         System.out.println("Zadej pocet kusu zbozi: ");
         int pocetZbozi = scanner.nextInt();
         Zbozi zbozi = new Zbozi(idZbozi,nazevZbozi,pocetZbozi);
-        pobocka.pridejZbozi(zbozi);
+        pobocka.pridejNoveZbozi(zbozi);
     }
 
     private static void vyberPobocku() throws IOException{
@@ -77,8 +133,9 @@ public class SkladApp {
         System.out.println("Zadej nazev pobocky: ");
         String nazevPobocky = scanner.nextLine();
         pobocka = Pobocka.getInstance(idPobocky,nazevPobocky,true);
-        System.out.println("Pracuji s uctem " + pobocka);
+        System.out.println("Pracuji s pobockou " + pobocka);
     }
+
 
 
 }
