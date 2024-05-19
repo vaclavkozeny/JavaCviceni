@@ -1,12 +1,7 @@
 package src.leto.semPR;
 
-import src.leto.cv10.Banka.Transakce;
-
-import java.io.DataInput;
 import java.io.DataOutput;
-import java.io.EOFException;
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class Zbozi {
     int id;
