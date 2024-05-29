@@ -1,11 +1,11 @@
 package src.leto.kozeny.src;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Objednavka {
     ArrayList<ZboziVObjednavce> zbozi;
@@ -27,6 +27,10 @@ public class Objednavka {
 //        return id;
 //    }
 
+    /**
+     * Vrátí cenu objednávky
+     * @return
+     */
     public int getCena() {
         cena = 0;
         for (ZboziVObjednavce z : zbozi) {
@@ -34,24 +38,53 @@ public class Objednavka {
         }
         return cena;
     }
+
+    /**
+     * Přidá zboží do objednávky
+     * @param id id zboží
+     * @param pocet počet kusů
+     * @return 0 Ok, -1 zboží neexistuje
+     * @throws IOException
+     */
     public int pridatZbozi(int id, int pocet) throws IOException {
+//        for (ZboziVObjednavce z : zbozi) {
+//            if (z.getId() == id) {
+//                z.pocet_na_sklade += pocet;
+//                return 0;
+//            }
+//        }
         int lastL = zbozi.size();
+        AtomicBoolean added = new AtomicBoolean(false);
         Path folder = Path.of(path);
-        Files.list(folder).forEach(file -> {
+        for (Path file : Files.list(folder).filter(file -> file.toString().endsWith(".sklad")).toList()) {
+
             try {
                 Pobocka p = Pobocka.getInstance(file);
-                p.getZbozi().stream().filter(z -> z.getId() == id).findFirst().ifPresent(z -> this.zbozi.add(new ZboziVObjednavce(id, z.getNazev(), z.getCena(), pocet, p.getId())));
+                p.getZbozi().stream().filter(z -> z.getId() == id && z.pocet_na_sklade >= pocet).findFirst().ifPresentOrElse(z -> {this.zbozi.add(new ZboziVObjednavce(id, z.getNazev(), z.getCena(), pocet, p.getId()));
+                    added.set(true);},
+                        () -> {
+                    added.set(false);});
+                if(added.get()) {
+                    break;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
-        if (lastL == zbozi.size()) {
+        }
+        if (!added.get()) {
             return -1;
         }else {
             return 0;
         }
     }
-    public void odebratZbozi(int id, int pocet){
+
+    /**
+     * Odebere zboží z objednávky
+     * @param id id zboží
+     * @param pocet počet kusů
+     * @return 0 Ok, -1 zboží neexistuje
+     */
+    public int odebratZbozi(int id, int pocet){
         Iterator<ZboziVObjednavce> iterator = zbozi.iterator();
         while (iterator.hasNext()) {
             ZboziVObjednavce z = iterator.next();
@@ -61,15 +94,23 @@ public class Objednavka {
                 } else {
                     z.pocet_na_sklade -= pocet;
                 }
+                return 0; // Zboží bylo odebráno
             }
         }
+        return -1; // Zboží nebylo nalezeno
     }
+
+    /**
+     * Dokončí objednávku
+     * @return 0 Ok, -1 objednávka je prázdná
+     * @throws IOException
+     */
     public int dokocitObjednavku() throws IOException {
         if (zbozi.size() == 0) {
             return -1; // Objednavka je prazdna
         }
         Path folder = Path.of(path);
-        Files.list(folder).forEach(file -> {
+        Files.list(folder).filter(file -> file.toString().endsWith(".sklad")).forEach(file -> {
             try {
                 Pobocka p = Pobocka.getInstance(file);
                 zbozi.forEach(z -> {
@@ -93,14 +134,27 @@ public class Objednavka {
 //            return -1; // Objednavka je prazdna
 //        }
 //        Path folder = Path.of(path);
-//        Files.list(folder).forEach(file -> {
-//            try {
-//                Pobocka p = Pobocka.getInstance(file);
+//        for (Path p: Files.list(folder).toList()) {
+//            //check if all items are in one store
+//            boolean allItemsInStore = true;
+//            for (ZboziVObjednavce z : zbozi) {
+//                boolean itemInStore = false;
+//                Pobocka pobocka = Pobocka.getInstance(p);
+//                for (Zbozi zbozi : pobocka.getZbozi()) {
+//                    if (zbozi.getId() == z.getId() && zbozi.getPocet_na_sklade() >= z.getPocet_na_sklade()){
+//                        itemInStore = true;
+//                        break;
+//                    }
+//                }
+//                if (!itemInStore) {
+//                    allItemsInStore = false;
+//                    break;
+//                }
+//                else{
 //
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
+//                }
 //            }
-//        });
+//        }
 //    }
+
 }

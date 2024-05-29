@@ -16,7 +16,7 @@ public class Pobocka {
     private String jmeno;
     int id;
     //TODO: Prepsat cestu
-    public static final String path = "C:\\Users\\kozen\\IdeaProjects\\javacviceni\\src\\leto\\kozeny\\data\\";
+    public static final String path = "src/leto/kozeny/data";
     private static final String ext = ".sklad";
 
     private Pobocka(Path soubor, String jmeno, int id) {
@@ -62,6 +62,12 @@ public class Pobocka {
         }
     }
 
+    /**
+     * getinstance pro zpracovani v cyklu
+     * @param soubor - soubor
+     * @return Pobocka
+     * @throws IOException
+     */
     public static Pobocka getInstance(Path soubor) throws IOException {
         String fid = soubor.toFile().getName().split("\\.")[0];
         fid = fid.substring(1);
@@ -119,6 +125,7 @@ public class Pobocka {
                     try {
                         int idZbozi = randomAccessFile.readInt();
                         String nazev = randomAccessFile.readUTF();
+                        int cena = randomAccessFile.readInt();
                         int pocetNaSklade = randomAccessFile.readInt();
                         if (idZbozi == id) {
                             randomAccessFile.seek(randomAccessFile.getFilePointer() - 4);
@@ -135,7 +142,7 @@ public class Pobocka {
 
         /**
          * Vypis zbozi
-         * @return
+         * @return String zbozi ve formatu
          * @throws IOException
          */
         public String vypisZbozi () throws IOException {
@@ -159,6 +166,11 @@ public class Pobocka {
             return sb.toString();
         }
 
+    /**
+     * Vrati zbozi pro zpracovani v cyklu
+     * @return ArrayList<Zbozi>
+     * @throws IOException
+     */
     public ArrayList<Zbozi> getZbozi() throws IOException {
         ArrayList<Zbozi> zbozi = new ArrayList<>();
         boolean eof = false;
@@ -198,7 +210,6 @@ public class Pobocka {
                         int pocetNaSklade = randomAccessFile.readInt();
                         if (idZbozi == id) {
                             if (pocetNaSklade - pocet < 0) {
-                                System.out.println(pobocka + ": Nedostatek zbozi " + nazev + " na sklade");
                                 return -2; //Nedostatek zbozi
                             }
                             randomAccessFile.seek(randomAccessFile.getFilePointer() - 4);
@@ -263,7 +274,7 @@ public class Pobocka {
             return "Pobocka: " + jmeno;
         }
 
-    public int getId() {
+        public int getId() {
         return id;
     }
 }

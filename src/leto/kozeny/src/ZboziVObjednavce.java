@@ -6,4 +6,7 @@ public class ZboziVObjednavce extends Zbozi{
         super(id, nazev, cena, pocet_na_sklade);
         this.pobockaId = pobockaId;
     }
+    public String toString(){
+        return super.toString() + " | Pobocka: " + pobockaId;
+    }
 }

@@ -36,7 +36,8 @@ public class SkladApp {
         System.out.println("6. Odeber zaznam");
         System.out.println("7. Vypis zbozi");
         System.out.println("8. Mega vypis");
-        System.out.println("9. Vytvor objednavku");
+        System.out.println("9. Kde je zbozi");
+        System.out.println("10. Vytvor objednavku");
         System.out.println("0. Konec");
 
     }
@@ -68,10 +69,28 @@ public class SkladApp {
                 megaVypis();
                 break;
             case 9:
+                kdeJeZbozi();
+                break;
+            case 10:
                 menuObjednavka();
                 break;
 
 
+        }
+    }
+
+    private static void kdeJeZbozi() {
+        System.out.println("\nKde je zbozi");
+        System.out.println("Zadej id zbozi");
+        int idZbozi = scanner.nextInt();
+        try {
+            String s = kdeJeZbozi(idZbozi);
+            if (s == null)
+                System.out.println("Zbozi neni na zadne pobocce");
+            else
+                System.out.println("Zbozi je na pobocce: " + s);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -102,10 +121,17 @@ public class SkladApp {
             case 4:
                 dokonciObjednavku();
                 break;
-            case 5:
+//            case 5:
+//                jeMozneNaJednePobocce();
+//                break;
+            case 6:
                 break;
         }
     }
+
+//    private static void jeMozneNaJednePobocce() throws IOException{
+//        System.out.println(objednavka.jeMozneRealizovatJednouPobockou());
+//    }
 
     private static void dokonciObjednavku() throws IOException {
         if (objednavka == null) {
@@ -117,6 +143,8 @@ public class SkladApp {
         int s = objednavka.dokocitObjednavku();
         if(s == 0)
             System.out.println("Objednavka byla dokoncena");
+        else if (s == -1)
+            System.out.println("Objednavka je prazdna");
         else
             System.out.println("Chyba pri dokonceni objednavky");
     }
@@ -140,7 +168,14 @@ public class SkladApp {
         int idZbozi = scanner.nextInt();
         System.out.println("Zadej pocet kusu zbozi: ");
         int pocetZbozi = scanner.nextInt();
-        objednavka.odebratZbozi(idZbozi, pocetZbozi);
+        int s = objednavka.odebratZbozi(idZbozi, pocetZbozi);
+        if (s == 0)
+            System.out.println("Zbozi bylo odebrano");
+        else if (s == -1)
+            System.out.println("Zbozi neexistuje");
+        else
+            System.out.println("Chyba pri odebirani zbozi");
+
         if(objednavka.getZbozi().size() == 0)
             objednavka = null;
     }
@@ -156,7 +191,7 @@ public class SkladApp {
             if (s == 0)
                 System.out.println("Zbozi bylo pridano");
             else if (s == -1)
-                System.out.println("Zbozi neexistuje");
+                System.out.println("Zbozi neexistuje nebo není skladem");
             else
                 System.out.println("Chyba pri pridavani zbozi");
         } catch (IOException e) {
@@ -169,6 +204,7 @@ public class SkladApp {
         System.out.println("2. Odeber zbozi z objednavky");
         System.out.println("3. Vypis objednavku");
         System.out.println("4. Dokonci objednavku");
+//        System.out.println("5. Je mozne na jedne pobocce");
         System.out.println("0. Zpet");
     }
 
@@ -300,6 +336,18 @@ public class SkladApp {
                 e.printStackTrace();
             }
         });
-
+    }
+    private static String kdeJeZbozi(int id) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        Path folder = Path.of(Pobocka.path);
+        Files.list(folder).forEach(file -> {
+            try {
+                Pobocka p = Pobocka.getInstance(file);
+                p.getZbozi().stream().filter(z -> z.getId() == id).findFirst().ifPresent(z -> sb.append("\n"+p.getJmeno() + " : " + z.getPocet_na_sklade() + " ks"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return sb.toString();
     }
 }
